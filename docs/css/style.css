@@ -1,0 +1,106 @@
+h1, h3{
+    color:  #814f1e;
+}
+
+body {
+    background-color: #F5EFE7;
+    font-family: 'Roboto Mono', monospace;
+}
+
+p, div, ul, table{
+    color: #213555
+}
+
+h4{
+    color: #2c2c41ca
+}
+
+
+
+
+
+h1 {
+    text-align: center 
+}
+
+
+h2{
+    color: #1e1e26ca;
+    text-align:center
+}
+
+
+h3{
+    display: flex;
+    flex-direction: row;
+}
+h3:before,
+h3:after {
+    content: "";
+    flex: 1 1;
+    border-top: 2px solid #814f1e;
+    margin: auto;
+    margin-left:20px;
+    margin-right:20px
+}
+
+.shortcut:hover {
+    background-color: silver;   
+}
+
+
+.project_boxes{
+    width: 90%;
+    margin:0 auto;
+    display: relative;
+    text-align:center
+}
+
+.project_box{
+    width:575px;
+    height: 300px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto; 
+    
+}
+
+.project_box_title{
+    padding:10px;
+    font-size: 24px;
+    margin-bottom:10px;
+    font-weight: 300;
+    overflow-x: hidden;
+    text-align: left;
+}
+
+.project_box_image img{
+    width:80%;
+    overflow-y: hidden;
+    object-fit: scale-down;
+}
+
+.project_box, .project_desc_box{
+    display:inline-block
+}
+
+.project_desc_box{
+    width:400px;
+    overflow: hidden;
+    margin-right: auto; 
+    box-sizing: border-box;
+    text-align: justify;
+}
+
+.project_desc{
+    font-size: 16px;
+    margin-bottom:0px;
+    font-weight: 300;
+    padding-bottom: 10px;
+}
+
+.box{
+    display:block;
+    margin-bottom:50px;
+    
+}
