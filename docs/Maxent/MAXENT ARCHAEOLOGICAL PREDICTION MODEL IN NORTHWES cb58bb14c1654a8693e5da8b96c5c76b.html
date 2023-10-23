@@ -1,0 +1,701 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MAXENT ARCHAEOLOGICAL PREDICTION MODEL IN NORTHWEST HONG KONG</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="cb58bb14-c165-4a86-93e5-da8b96c5c76b" class="page sans"><p>*THIS PAGE IS GENERATED FROM NOTION. (WIP)</p><hr><br><header><img class="page-cover-image" src="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/APM.jpg" style="object-position:center 76.11%"/><h1 class="page-title">MAXENT ARCHAEOLOGICAL PREDICTION MODEL IN NORTHWEST HONG KONG</h1><p class="page-description"></p></header><div class="page-body"><h1 id="73b1d2f9-5500-4f30-aa53-8e31b8bb02a3" class="">1. Introduction: Predictive Modelling in Archaeology</h1><p id="3ff66ed0-dcf9-4cd9-8548-be640b8e46ce" class="">This study attempts to generate a prediction map of prehistoric archaeological sites in northwest Hong Kong using the MaxEnt algorithm. </p><p id="b5713554-184a-4026-8bd5-c2106eb58b9b" class="">The use of GIS and related spatial technologies have played a significant role in archaeology, especially to understand human and their relationship with the natural environment (Conolly 2008). One of earliest and widespread uses of GIS in archaeology is the development of predictive model.</p><p id="7631bb85-28fc-436b-996b-185579ade04b" class="">Predictive modelling have been used in archaeology to develop predictive models for archaeological site presence. This is done based on the premise that a certain type of archaeological site tends to occur at the same kind of “place” (Renfrew and Bahn 2016), where “place” can be quantified into different kind of environmental spatial data, including elevation, aspect and gradient, etc.  Maximum Entropy Modelling (MaxEnt) is a machine learning model that compares environmental variables and the location of presence archaeological sites data only to calculate the probability of archaeological presence. This approach avoids the need for absence data and provides quantitative results for interpretation by archaeologists.</p><p id="f75467a7-59bb-4652-8738-a95eefa6a198" class="">MaxEnt model has been widely used in ecology and species distribution modelling, but it has also been successfully applied in archaeology due to its ability to use presence data only. The sampling of presence data avoids the need to create a set of site absence data, which is especially useful in cases where the absence of data does not necessarily mean the absence of archaeological presence (Kvamme 2006; Yaworsky et al. 2020). The MaxEnt algorithm calculates the probability of archaeological presence based on the comparison of environmental variables and the location of presence data. The model generates a prediction map that shows the likelihood of archaeological presence in different locations, which can then be interpreted by archaeologists with quantitative results.</p><p id="136bdddb-60f9-442c-913c-7b73bcdb1e57" class="">Predictive modelling using MaxEnt has become increasingly popular in archaeology due to its accuracy and efficiency. It allows archaeologists to study a widespread extent where not every location can be studied comprehensively. The resulting prediction map provides a useful tool for identifying potential archaeological sites, which can then be investigated further.</p><h1 id="9a3bb87d-2742-4a04-b968-a653a352cacd" class="">2. Method</h1><h2 id="9da8385c-5bba-4967-aec7-c13f07185ebf" class="">2.1 Software and Tools</h2><p id="69fac38c-1917-4c38-ace5-a2ac48484133" class="">The ArcMap is a geospatial processing software used in this study to visualise, process, edit, create and analyse geospatial data.  </p><p id="042e61c2-7754-4759-add1-97b2369ad1fd" class="">Regarding the predictive model, the MaxEnt algorithm is executed with the software developed by Steven J. Philips, Miroslav Dudík and Robert E. Schapire utilising the presence archaeological site data and environmental variables as input. </p><h2 id="dbc007ae-3362-4b93-bb0b-7327837f7833" class="">2.2 Data Collection and Preparation</h2><p id="b9d640ba-b34e-4ed3-a313-907ee4aedf2b" class="">Two input ares required for the MaxEnt model, the presence data (usually archaeological sites), and environmental variables.  </p><p id="99877134-e40c-46b4-b8d6-a899297e9f19" class="">Generally, the location of archaeological sites are used as presence data. However, the prehistoric sites data in Hong Kong are scarce. Instead, this study will make use of the area of <a href="https://www.amo.gov.hk/en/historic-buildings/archaeological-interest/index.html">Sites of Archaeological Interests</a> that consist archaeological potential dated to the prehistoric period. Sample points are plotted within the the areas and the coordinates are used as the presence data input.</p><p id="25cc59bc-cfa6-4308-9386-cb59487e5c67" class="">A number of environmental datasets were taken into account as input for the prediction model, such as roughness of land, greenness of the location and distance to modern watercourse, etc. However, some data were excluded due to them being random, irrelevant or disturbed by modern landscaping.  Furthermore, test runs with different variables during model development help identifying environmental factors that are influencing the predictions (permutation importance and percent contribution generated by the model).  The environmental variable used in the finalised model are aspect, elevation, slope, geology, distance to coast, distance to alluvial deposits, distance to hill and direction to hill.<div class="indented"><h3 id="274b4435-baae-43e9-8682-0084efdb7168" class="">Table 2.2.1 Presecne Data and <strong>Environmental Variables for MaxEnt Modelling</strong></h3><table id="7984cbfb-9a37-42a9-82ee-f3adcde354f0" class="simple-table"><tbody><tr id="94e3327a-e604-470e-9992-68dfe7bd780c"><td id="[NDo" class="block-color-teal_background"><strong>Presence Data</strong></td><td id="@_nu" class="block-color-teal_background" style="width:489px"><strong>Source</strong></td></tr><tr id="bde0dd56-00e4-42f8-9b53-58651b439b53"><td id="[NDo" class="">Sites of Archaeological Interest (SAIs)<a href="https://www.notion.so/MAXENT-ARCHAEOLOGICAL-PREDICTION-MODEL-IN-NORTHWEST-HONG-KONG-cb58bb14c1654a8693e5da8b96c5c76b?pvs=21">[1]</a></td><td id="@_nu" class="" style="width:489px">Prehistoric:
+-        Sample points of SAIs with archaeological interest of prehistoric </td></tr><tr id="09a8c6c6-21ca-4da4-af5a-f2c0a3feca95"><td id="[NDo" class="block-color-teal_background"><strong>Environmental Variable</strong></td><td id="@_nu" class="block-color-teal_background" style="width:489px"><strong>Source</strong></td></tr><tr id="42133642-fe45-46bd-95d8-c266c199cbca"><td id="[NDo" class="">Aspect (°)</td><td id="@_nu" class="" style="width:489px"><a href="https://essd.copernicus.org/articles/11/1083/2019/">Hong Kong climate, vegetation, and topography raster data</a></td></tr><tr id="b6451852-b6ae-4d27-8f24-b9a2b3bbcdcc"><td id="[NDo" class="">Elevation (mPD)</td><td id="@_nu" class="" style="width:489px"><a href="https://essd.copernicus.org/articles/11/1083/2019/">Hong Kong climate, vegetation, and topography raster data</a></td></tr><tr id="d81ed028-aaf7-46cc-ae78-77f182b6e3ea"><td id="[NDo" class="">Slope (°)</td><td id="@_nu" class="" style="width:489px"><a href="https://essd.copernicus.org/articles/11/1083/2019/">Hong Kong climate, vegetation, and topography raster data</a></td></tr><tr id="b12293dc-c6ac-4ab0-a098-d44438c6ad4c"><td id="[NDo" class="">Geology</td><td id="@_nu" class="" style="width:489px"><a href="https://www.geomap.cedd.gov.hk/GEOOpenData/eng/GeologicalMap.aspx">CEDD Geological Map</a></td></tr><tr id="005808f6-c4c9-4085-9a01-2469e0b7dc91"><td id="[NDo" class="">Distance to Coast (m)</td><td id="@_nu" class="" style="width:489px">Ancient coastline extracted based on marine deposits.  Distant calculated with Euclidean Distance.</td></tr><tr id="b2715251-d22f-4350-800d-549580fdf3a5"><td id="[NDo" class="">Distance to Alluvial Deposits (m)</td><td id="@_nu" class="" style="width:489px">Watercourse extracted based on geology.  Distant calculated with Euclidean Distance.</td></tr><tr id="5f0dbf99-ad0d-48c8-9d8d-bc11bf283704"><td id="[NDo" class="">Distance to Hill (m)</td><td id="@_nu" class="" style="width:489px">Hilly landscape extracted based on solid geology.  Distant calculated with Euclidean Distance.</td></tr><tr id="21044d61-86ef-4c25-ba4e-0b098805c4e9"><td id="[NDo" class="">Direction to Hill (°)</td><td id="@_nu" class="" style="width:489px">Hilly landscape extracted based on solid geology.  Direction calculated with Euclidean Direction.</td></tr></tbody></table></div></p><h2 id="6e8a03e0-c6b1-4fe5-81d8-25ef58f0b611" class="">2.3 Model Input and Output</h2><p id="3a956cda-a556-4726-b774-a967bc74e412" class="">The MaxEnt model allows for the optimization of its effectiveness and accuracy through different parameter settings. To enhance accuracy, multiple test runs were conducted using various parameters, environmental variables, presence data, and processing extents. In this study, the model was first configured using the software&#x27;s default parameters to establish a baseline. Then, through iterative test runs, the parameters and input dataset were optimized to maximize the model&#x27;s performance.  </p><p id="5bd3a38b-9d86-4975-b977-0d7dd89d1b89" class="">The model generates output consisting of a continuous prediction map in standardised <em>ASCII</em> The model also produces:<div class="indented"><ul id="993019da-d0ce-4662-89ec-57219e61af2d" class="bulleted-list"><li style="list-style-type:disc">a table presenting the ‘percent contribution’ and ‘permutation importance’, indicating the degree to which each variable contributes to the model and the significance of each variable.</li></ul><ul id="09a05d51-4a7b-4486-adf6-aa9e011ee066" class="bulleted-list"><li style="list-style-type:disc">response curves of each environmental variable, displaying the predicted probability against the range of values for each environmental variable. These provide insight into the variables ranges associated with higher predicted probability of containing archaeological sites.</li></ul><ul id="aeb7a29e-5d8d-47bd-acc3-4e6f5c98f363" class="bulleted-list"><li style="list-style-type:disc">an Area Under Curve (AUC) output, which is utilised as a metric for evaluating the effectiveness of the model at predicting archaeological potential.</li></ul></div></p><h2 id="b37574b4-4862-4857-8919-1c425c5aded1" class="">2.4 Model Evaluation</h2><p id="d8bdb030-c795-4ed9-9036-7206b5a8e393" class="">One way to assess the performance of MaxEnt is by calculating the Area Under Curve (AUC) of the Receiver Operating Characteristic (ROC) curve. This method involves determining how well the model can differentiate positive locations (where archaeological potential areas are present) from negative locations (where no archaeological potential exists). AUC values range from 0 to 1, with higher values indicating better model performance. An AUC value of 0.5 suggests that there is no correlation between the environmental variables and the archaeological potential predictions by MaxEnt. In this study, the AUC values of the MaxEnt prediction model were calculated by the MaxEnt software.</p><p id="13583efc-d7ac-40d0-9a19-49f8ac9879bc" class="">Furthermore, cross-validation was conducted by running the model while dividing the presence datasets into training dataset and testing dataset. The model will be trained using the training dataset and tested against the testing dataset to evaluate the model. This will be replicated multiple times with different splits of the presence datasets and provide an average calculation of the model performance. The process is enabled as a parameters in the MaxEnt model software.</p><p id="e4a12295-6c2b-4ee9-9bbd-a569638af52a" class="">To ensure satisfactory predictiveness, repeated test runs are done and reviewed with different parameters and modified datasets if neccesary. The model is evaluated with each run until the the model is satisfactory with high AUC value while avoiding overfitting.<div class="indented"><h3 id="afdbd82c-dd62-4f88-8579-5569476d575c" class="">Table 2.4.1 MaxEnt Modelling Workflow</h3><figure id="af814c26-9570-49e5-8829-045accdf1996" class="image"><a href="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/APM_Flowchart_1.jpg"><img style="width:6539px" src="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/APM_Flowchart_1.jpg"/></a></figure></div></p><h1 id="7f41709d-675e-4d94-9259-35db811dabab" class="">3 Results</h1><h2 id="abb2bbe3-fab8-4296-b4de-6d8fd7309540" class="">3.1 Introduction</h2><p id="17e75e47-ff93-487d-935f-bf21d96e383d" class="">This section displays the results generated by the historical and prehistoric prediction modelas by MaxEnt. Three crucial results for each environmental variable are generated, namely percent contribution, permutation importance and response curves of each environmental variables. Other results are the Jackknife analysis.</p><p id="b22bda05-a144-4ec4-b492-6d42140286ff" class="">Percent contribution and permutation importance are two metrics the help to evaluate the relative importance of the environmental variables for the prediction of archaeological potential by MaxEnt model. Percent contribution measures the weight of particular variable contributed to the model results based on how MaxEnt algorithm utilise it. The calculation was made by the MaxEnt algorithm by first making predictions based on only one variable at a time. Then another variable is added to the algorithm to check if the predictions has improved and assigns a contribution score based on that improvement. The variables that improve the predictions the most get higher contribution scores.</p><p id="f4c56a0c-3668-4084-ab25-6465b04f42dd" class="">On the other hand, permutation importance measures the relevancy of each variable in predicting the selection of past human settlement location. It works by randomly mixing up the values of one variable at a time, then seeing how much the prediction model of archaeological potential changes as a result. This change would trigger decrease to the AUC-ROC value. The more this change cause decrease in the AUC-ROC value, the more important is this variable to the prediction model.</p><p id="8ce60aeb-bdc1-4ce7-b94c-bcd3aa052082" class="">Furthermore, response curves portray how the predicted archaeological potential varies across the range of values for respective environmental variable. The y-axis of the graph is the predicted probability, and the x-axis is the value of variables. Curves shapes reveals conditions of each variable that favours higher or lower potential per statistical patterns. It should be noted that these curves only consider single variable in isolation and overlooks the correlations between variables.</p><h2 id="d73fd552-f200-40a7-9754-bd2dee729c38" class="">3.2 Variable Contribution and importance</h2><p id="f7551869-43fd-433f-8d71-142422330af8" class="">Table 3.2.1 shows the results of the environmental variables used in the prediction model for the prehistoric period.<div class="indented"><h3 id="f2e8e32f-27b9-442d-bb6b-02fe2d23614a" class="">Table 3.2.1 Percentage Contribution and Permutation Importance of each Environmental Variable in Prehistoric Prediction Model</h3><table id="62769eef-ee9d-4f35-8078-5fa7a197cfef" class="simple-table"><tbody><tr id="c4e0efd5-7426-4d7c-8528-8e1fb1d07aa2"><td id="]z]z" class="block-color-teal_background"><strong>Variable</strong></td><td id="|EyD" class="block-color-teal_background"><strong>Percent Contribution (%)</strong></td><td id="b[io" class="block-color-teal_background"><strong>Permutation Importance (%)</strong></td></tr><tr id="ea3130de-58d8-4db6-a8eb-7bb92a5c3430"><td id="]z]z" class="">Aspect</td><td id="|EyD" class="">3.0</td><td id="b[io" class="">2.1</td></tr><tr id="204c0d71-cfca-49ac-a439-2c1aa3818b16"><td id="]z]z" class="">Elevation</td><td id="|EyD" class="">31.1</td><td id="b[io" class="">38.1</td></tr><tr id="6b9e46f3-0faa-485d-b61e-9b718b0bd2f6"><td id="]z]z" class="">Slope</td><td id="|EyD" class="">5.3</td><td id="b[io" class="">4.2</td></tr><tr id="ab8087e8-b88c-4d9c-9afb-a9eea4564f9c"><td id="]z]z" class="">Geology</td><td id="|EyD" class="">12.4</td><td id="b[io" class="">4.2</td></tr><tr id="e0a2885d-40be-4f36-984a-b2c9afc4902a"><td id="]z]z" class="">Distance to Coast</td><td id="|EyD" class="">17.1</td><td id="b[io" class="">22.7</td></tr><tr id="6730bed3-2145-4563-9f2f-9e6b9395dabb"><td id="]z]z" class="">Distance to Alluvial Deposits</td><td id="|EyD" class="">26.2</td><td id="b[io" class="">16.3</td></tr><tr id="db3077b3-b2a8-4ac5-a20a-c8ce742c9a2b"><td id="]z]z" class="">Distance to Hill</td><td id="|EyD" class="">3.3</td><td id="b[io" class="">10.1</td></tr><tr id="65c9fe40-5a02-40d8-9bbe-c0306b95eb76"><td id="]z]z" class="">Direction to Hill</td><td id="|EyD" class="">1.6</td><td id="b[io" class="">2.3</td></tr><tr id="921b351d-4c47-4f3e-be84-eaf430e2d5e5"><td id="]z]z" class="">Total</td><td id="|EyD" class="">100</td><td id="b[io" class="">100</td></tr></tbody></table></div></p><p id="bddb2cd1-f7b6-42b3-8882-cbc45af073a1" class="">As shown in Table 3.2.1<strong>, </strong>elevation has the highest percent contribution at 31.1%, indicating the algorithm utilized elevation heavily when generating the predictions. Distance to coast also has a relatively high percent contribution of 17.1%.</p><p id="142080ec-8054-4674-98bf-79d3b08e00db" class="">However, both elevation and distance to coast have even higher permutation importance values of 38.1% and 22.7%. This means that they contained the most useful information for distinguishing areas of higher archaeological potential.</p><p id="b022c9e6-56e4-481e-8f19-2fdbf240a9f7" class="">In contrast, variables like aspect, slope and direction to hill have lower permutation importance despite their percent contributions. This indicates the MaxEnt algorithm overestimated their significance, when in reality they likely had less relevance for predicting where archaeological sites actually formed.</p><p id="65a8d563-f55a-4c30-b238-cc6a7deaee75" class="">Overall, the variables with the highest permutation importance (elevation, distance to coast and distance to alluvial deposits) have the most meaningful insights into past human behaviours and site distributions based on environmental influences. These factors probably had the greatest impact on where archaeological sites actually occurred.</p><h2 id="0676a70d-1484-4525-a578-27bad47db7c2" class="">3.3 Response Curves of Variables</h2><p id="6ee604e9-5faf-4e88-ae29-6817578160c2" class="">The response curves illustrate how environmental variables influence the MaxEnt model results. It reveals the variables that has the most impact on predicting archaeological potential. Curves that change sharply and differ across the entire range of a variable likely indicate that the variable significantly affected where ancient human sites were formed.</p><p id="755ece1c-63d2-4e50-9d5c-80124e9e36b3" class="">On the other hand, curves that remain fairly similar and give an even probability across all values for a variable tend to represent aspects with minimal relevance for determining which landscape features were more favourable for ancient human settlement and activities. These variables typically contribute very little to the prediction, correctly reflecting their weak predictive power considered individually.</p><p id="1fd74c29-a615-4aa5-9332-2fc30d74ae77" class="">In simple terms, the steeper and more variable the curve for an environmental factor, the more important that factor likely was in influencing where ancient humans chose to settle and the activities they undertook.  However, factors with flatter, more uniform curves probably did not significantly impact ancient human site locations and behaviours.  The response curves of environmental variables for the MaxEnt model in prehistoric period is displayed in Plate 3.3.1.</p><p id="b79eadd2-12f4-4c3d-a9fb-1944181201c0" class=""><div class="indented"><h3 id="e3d9aeef-fc7a-4b74-b7af-67da19b95c12" class="">Plate 3.3.1 Response Curve of Archaeology of Prehistoric Period to Environmental Variables</h3></div></p><figure id="4bb50955-a8fd-4b05-95b3-1e888874d04e" class="image"><a href="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/Untitled.png"><img style="width:908px" src="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/Untitled.png"/></a></figure><figure id="14a716b4-56d7-4e90-8e00-29b8ac4b4cbd" class="image"><a href="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/Untitled%201.png"><img style="width:906px" src="MAXENT%20ARCHAEOLOGICAL%20PREDICTION%20MODEL%20IN%20NORTHWES%20cb58bb14c1654a8693e5da8b96c5c76b/Untitled%201.png"/></a></figure><p id="76410cd4-8a1e-4f9a-8a7d-bf7dcb284df9" class="">The <em><strong>aspect</strong></em> response curve illustrates its influence on predicted archaeological potential of the prehistoric period. Aspect ranges from 0° to 360°, with 0° denoting north and 180° south.<div class="indented"><ul id="3b683cf4-d8f8-4673-b00f-9fa949e90069" class="bulleted-list"><li style="list-style-type:disc">0° to 90° (NE): Low potential (0.5-0.55 probability)</li></ul><ul id="ff5f9aa0-68b7-48b0-8a8a-8dddd8f28ce8" class="bulleted-list"><li style="list-style-type:disc">90° to 180° (SE): Lower potential (0.55-0.6 probability)</li></ul><ul id="f89158bc-7ff2-4c6e-83fa-194d153dbd84" class="bulleted-list"><li style="list-style-type:disc">180° to 270° (SW): Higher potential (0.6-0.7 probability, rising)</li></ul><ul id="d577e25d-954e-46f5-84c5-8c1d8b4ead5d" class="bulleted-list"><li style="list-style-type:disc">270° to 360°/0°(NW): Highest potential (0.7-0.8 probability, peaking at 340° then declining)</li></ul></div></p><p id="df80d452-6b83-4ed5-9c30-397d64bbe11f" class="">The curve suggests NW-facing aspects had relatively greater potential. However, minor contribution (3%) of aspect means the model placed little weight on it.</p><p id="305ebd38-a935-4e5a-b7a0-9c9665c09a62" class="">
+</p><p id="894351f4-13dd-4b01-8f20-11bdf08b46f0" class="">The <em><strong>elevation</strong></em> response curve reveals its influence on predicted archaeological potential of the prehistoric period. Elevation ranged from 0mPD to +1000mPD, categorized as:<div class="indented"><ul id="cb6e1b6c-8012-4856-9dd2-34ecd027c4ef" class="bulleted-list"><li style="list-style-type:disc">0mPD to +50mPD: Higher potential (higher probability, &gt;0.35)</li></ul><ul id="156de58d-cd8c-4ef8-b881-6cc5bc3dfce7" class="bulleted-list"><li style="list-style-type:disc">+50mPD to +1000mPD: Lower potential (declining probability as elevation increases)</li></ul></div></p><p id="a48d2d88-d1e2-4b34-b219-836a908a8b86" class="">The curve suggests lower elevations had relatively greater potential. This aligns with the high contribution (31.1%) of elevation, indicating the model weighted it heavily.</p><p id="d6886331-13d9-4a1a-a2a0-a45b0cf22ef9" class="">
+</p><p id="9cfcc1a8-3e22-44b7-9ed6-2e19b18f92f4" class="">The <em><strong>geology</strong></em> response curve reveals its influence on predicted archaeological potential. Geological types ranged from solid to superficial deposits. The graph depicts these types as bars, with longer bars indicating higher probabilities.</p><p id="ec8c07d3-1b79-4b6e-9bcf-85dce74e8d28" class="">Geological types with relatively higher probabilities (&gt;0.2) include Qa (alluvium), Qpa (Pleistocene alluvium), Qd (colluvium) Qpd (Pleistocene colluvium), Qb (beach deposits) and Qrb (raised deposits). Some solid geology also generated higher probabilities where presence data occurred within them.</p><p id="e54159c4-f440-4687-85e7-da4980b8864b" class="">This indicates superficial deposits, especially alluvial and colluvial, yielded relatively greater potential. This aligns with moderate contribution (12.4%) of geology, indicating the model moderately weighted it.</p><p id="b297e487-a855-4918-9348-ea0c752d8e30" class="">
+</p><p id="2e7e41fc-eec0-4cb1-9a52-3914e4823fca" class="">The <em><strong>slope</strong></em> response curve reveals its influence on predicted archaeological potential. Slope ranged from 0° to 90°, categorized as:<div class="indented"><ul id="76aa7edb-d7a1-41b2-af51-27f65cb4617b" class="bulleted-list"><li style="list-style-type:disc">0° to 15°: Higher potential (higher probability &gt;0.5)</li></ul><ul id="b4b878e9-9e93-4369-b76c-56c8290fe248" class="bulleted-list"><li style="list-style-type:disc">15° to 90°: Lower potential (declining probability as slope increases)</li></ul></div></p><p id="436526ef-2208-4110-b6c6-20e7de2ade8f" class="">The curve suggests gentler slopes had relatively greater potential. However, this contrasts with minor contribution (5.3%) of slope, indicating the model placed little weight on it.</p><p id="5ca3a4ff-7ae1-4205-9771-cc1590500324" class="">
+</p><p id="b6b5e0c1-f27b-4678-86ec-c0ab2d0cd0b5" class="">The <em><strong>distance to coast</strong></em> response curve reveals its influence on predicted archaeological potential. Distance ranged continuously from 0m to over 3000m.</p><p id="9f880c8a-dee9-40bd-ad32-d038c9fb192d" class="">The curve has a bimodal shape, indicating two distance ranges with relatively higher probabilities:<div class="indented"><ul id="f82983aa-0642-46c9-bffb-452b7a096baa" class="bulleted-list"><li style="list-style-type:disc">0m to 500m: Higher potential (peak probability)</li></ul><ul id="b0de7982-3d55-4b2b-9be3-e1b921d6d7ca" class="bulleted-list"><li style="list-style-type:disc">500m to 3000m: Potential generally decreases as distance to coast increases</li></ul><ul id="f24f482d-48aa-45f1-bbe0-1f83c0b9a9fd" class="bulleted-list"><li style="list-style-type:disc">3000m to 3500m: Moderate potential (secondary peak)</li></ul></div></p><p id="f0a16ec4-ab7b-496e-80ce-feb4abf0aa03" class="">This aligns with the high contribution (17.1%) of distance to coast, indicating the model weighted it heavily. Locations close to the coast, especially within 500m, likely exhibited relatively greater potential.</p><p id="e20a78b6-17aa-4752-9f23-d5c77933dc6b" class="">
+</p><p id="4da8b64d-15a4-4ef1-92f6-e4df2025cfda" class="">The <em><strong>distance to alluvial deposits</strong></em> response curve reveals its influence on predicted archaeological potential. Distances ranged continuously from 0m to over 1000m. The curve indicates locations within 100m generally exhibited higher probabilities (&gt;0.5), with potential decreasing as distance increases beyond 100m. Potential is highest (peak probability) at 0m, i.e. locations sitting directly on alluvial deposits. This aligns with distance to the high contribution (26.2%) of alluvial deposits, indicating the model weighted it heavily. Proximity to alluvial deposits, especially within 100m, likely conferred relatively greater potential.</p><p id="dbcb56e9-b769-40eb-a827-888c6a2e3fc1" class="">
+</p><p id="894a482f-c9ea-4cb1-aad7-169907148eea" class="">The <em><strong>distance to hill</strong></em> response curve reveals its influence on predicted archaeological potential. Distances ranged continuously from 0m to over 1000m.</p><p id="1331fa6e-adc5-4469-a0b6-d6289b81904d" class="">The curve indicates locations within 500m generally exhibited higher probabilities (&gt;0.5), with potential peaking around 25m and declining as distances approach 0m. Potential is lowest at 0m, i.e. locations sitting directly on hills. This contrasts with minor contribution (3.3%) of distance to hill, as the model placed little weight on it. Proximity to hills, but not direct contact, likely conferred relatively greater potential.</p><p id="5031f3e2-8432-46f8-8760-8f2a44673ffb" class="">
+</p><p id="c86bde83-16f9-4315-9c8d-35c1db6cdb77" class="">The <em><strong>direction to hill</strong></em> response curve reveals its influence on predicted archaeological potential. Direction to hill ranges from 0° to 360°, with 0° denoting north and 180° south.</p><p id="c0905611-5045-419b-a937-ded8e98ea3f0" class="">The curve reveals a nearly flat, featureless response, with probability generally &lt;0.5 across all directions.</p><p id="c80b1207-1f5d-4894-8e4c-b667b51b9ee2" class="">The insignificant contribution (1.6%) of direction to hill indicates this variable poorly predicts archaeological potential. This suggests direction to hill provides little useful information for distinguishing locations likely to contain archaeological remains. The uniform probability across directions indicates this variable exhibited no meaningful influence over where sites actually formed in the past.</p><p id="9f0daba8-dfa7-4c0b-b800-7c1f1164378b" class="">Curve shapes revealing little variation across an environmental factor often denote variables with minimal true significance for determining landscape settings that facilitated human settlement and activities in the past. Such variables tend to exhibit extremely low contributions that reflect their poor predictive abilities.</p><h2 id="b199020f-35b4-41d6-8b2a-5a425dabdd3b" class="">3.4 Summary</h2><p id="0d51edb0-84cc-4fd7-afac-25ae4eabd069" class="">Response curve analysis suggests two general environmental settings exhibited relatively higher archaeological potential during the prehistoric period:<div class="indented"><ol type="1" id="1c881964-99db-4855-9a25-c377964c2689" class="numbered-list" start="1"><li>Coastal flats:<ul id="d98a1b6e-eefd-4687-98bc-0f27576cd5ca" class="bulleted-list"><li style="list-style-type:disc">Lower elevations (0m to 50m)</li></ul><ul id="b96dbdeb-eabc-4d9b-910f-5ec96bd5754a" class="bulleted-list"><li style="list-style-type:disc">Gentler slopes (0° to 10°)</li></ul><ul id="4fb621fc-edb7-4b38-ae39-2b1496973fb2" class="bulleted-list"><li style="list-style-type:disc">Proximity to the coast (0m to 500m and 3000m to 3500m)</li></ul><ul id="9ae5f823-4997-4933-8fcd-4ee32ad7e894" class="bulleted-list"><li style="list-style-type:disc">Proximity to alluvial deposits (0m to 250m from Qa)</li></ul></li></ol><ol type="1" id="8c9a82d7-c2ef-494b-bc77-a6d33f704019" class="numbered-list" start="2"><li>Hill foots:<ul id="fe197507-1752-4791-adea-8028f72b0669" class="bulleted-list"><li style="list-style-type:disc">Foot slopes and gentle slopes (&lt;15°)</li></ul><ul id="14e965a7-2764-4840-9755-15fad99ecea6" class="bulleted-list"><li style="list-style-type:disc">Aspect facing Deep Bay in the northwest</li></ul><ul id="b6717073-beb7-4550-8838-3fdf15b8c9c4" class="bulleted-list"><li style="list-style-type:disc">Proximity to the hill (within 400m)</li></ul></li></ol></div></p><p id="c3182369-2105-4839-957e-e67231bbe372" class="">Overall, the coastal flats appeared to offer the most favourable conditions for past human settlement and activity. Lower-lying alluvial areas near the coast but set back from active beach zones may have balanced advantages of resources, arable land and transport routes with fewer constraints.</p><p id="8b0416a8-b9ca-4fd8-b0ed-0d5489f37a4a" class="">Hill foots likely conferred advantages due to prospects, aspect, drainage and river views, though they exhibited less potential than coastal flats. Top of hills showed the lowest potential, indicating humans preferred slopes over peaks during the prehistoric period. Furthermore, direction to hills exhibited no significant influence, suggesting relative orientation to hills mattered little compared to other factors like slope, elevation and coastality.</p><p id="5134c7eb-e695-4d9f-bf75-80d1adb6bb80" class="">In summary, landscape setting appears to have strongly influenced archaeological potential during the prehistoric period, with coastal flats offering the most favourable conditions according to statistical patterns in the input data.</p><p id="8d22f789-c143-408f-a116-7ef771faa3ae" class="">Presence data for locations with known archaeological potential during the prehistoric period exhibit two general patterns:<div class="indented"><ol type="1" id="7c05d5bf-97d2-4601-8675-dac3f1c7f5c4" class="numbered-list" start="1"><li>Coastal flats: Sites occurring on the coastal plains tend to cluster in Tuen Mun, including at Lau Fau Shan, Ngau Hom Shek and Mong Tseng. The environmental variable values for these locations - like low elevation, proximity to alluvial deposits and the coast - generally fall within the high probability ranges indicated by the response curves.</li></ol><ol type="1" id="697984d0-e27e-44dd-b194-b328579b11c6" class="numbered-list" start="2"><li>Hill foots: Sites situated on gently sloping hills tend to concentrate in Fanling and Sheung Shui, particularly around Wah Shan and Hung Leng. The environmental characteristics of these locations - such as slope, aspect and distance to hills - also typically align with the higher probability ranges revealed in the corresponding curves.</li></ol></div></p><p id="2bac1096-cb49-4f90-82e3-2a3b3e219bf0" class="">This correspondence between the environmental conditions at known archaeological locations and the high probability ranges predicted by the model strengthens confidence in the response curves&#x27; accuracy. They appear to have successfully identified the key landscape variables influencing site distributions and potential during the prehistoric period. <strong>Table 3.4.1</strong> supplement the values of each environmental variables of the areas.<div class="indented"><h3 id="79b19d3b-cf62-4213-997a-fc30e6286b5b" class="">3.4.1 Environmental Variables Value of Presence Data Location of Prehistoric Period</h3><table id="6faf4541-5559-48c4-8963-55b01e05449d" class="simple-table"><tbody><tr id="f72e9f7e-63a6-4caa-bb41-d715ee8f8723"><td id="RM]x" class=""><strong>Occurrence Area</strong></td><td id="L]=h" class=""><strong>Elevation (mPD)</strong></td><td id="WtSv" class=""><strong>Slope (°)</strong></td><td id="h@wp" class=""><strong>Distance to Coast (m)</strong></td><td id="&lt;O~g" class=""><strong>Distance to Qa (m)</strong></td><td id="t|WA" class=""><strong>Geology</strong></td></tr><tr id="e7611939-2c96-450e-a615-7df21b0f060e"><td id="RM]x" class="">Ngau Hom Shek</td><td id="L]=h" class="">6 – 86 
+(mean = 35)</td><td id="WtSv" class="">3 - 16 
+(mean = 11)</td><td id="h@wp" class="">0 – 426
+(mean = 191)</td><td id="&lt;O~g" class="">42 – 400
+(mean = 231)</td><td id="t|WA" class="">gfm, Qpd, Qb, Qa</td></tr><tr id="aaeb9faf-07f7-4b9b-a0b7-f3c4de2806bb"><td id="RM]x" class="">Mong Tseng</td><td id="L]=h" class="">4 – 18
+(mean = 9)</td><td id="WtSv" class="">1 – 14
+(mean = 5)</td><td id="h@wp" class="">30 – 150
+(mean = 95)</td><td id="&lt;O~g" class="">30 – 175
+(mean = 101)</td><td id="t|WA" class="">Cts, Qpa, Qpd</td></tr><tr id="f8b8eef5-b765-47df-ad31-2694173c800f"><td id="RM]x" class="">Wah Shan</td><td id="L]=h" class="">7 – 39
+(mean = 19)</td><td id="WtSv" class="">2 – 21
+(mean = 9)</td><td id="h@wp" class="">2612 – 3064
+(mean = 2854)</td><td id="&lt;O~g" class="">67 -375
+(mean = 198)</td><td id="t|WA" class="">JTM, Qpd, Qpa</td></tr><tr id="880678bc-2621-48f4-b756-73f10d73616c"><td id="RM]x" class="">Hung Leng</td><td id="L]=h" class="">12 – 49
+(mean = 26)</td><td id="WtSv" class="">2 – 20
+(mean = 10)</td><td id="h@wp" class="">3141 – 3595
+(mean = 3367)</td><td id="&lt;O~g" class="">0 – 458
+(mean = 228)</td><td id="t|WA" class="">JTM, Qpd</td></tr></tbody></table></div></p><h2 id="8f48db98-cd29-4629-b181-28c0eeadbadd" class="">4 Archaeological Potential of Prehistoric Period</h2><h2 id="aaf51468-fb6d-484c-b4fd-c6b72e0674ec" class="">4.1 Introduction</h2><p id="1bfdaaa1-96e2-437c-8d34-9f83d43f7f4e" class="">The predictive model can provide useful initial indication of archaeological potential, but it should be used cautiously and cannot be taken at face value due to inherent limitations. While the environmentally deterministic approach has been criticised for minimising cultural factors, it also has value in identifying potential environmental influences on past human decisions. Biases in the data and methodology can affect the accuracy of the results. Hence, archaeological investigation under this Project and previous archaeological studies are essential to complement, validate and refine the output of the predictive modelling, establishing archaeological potential areas with high confidence.</p><p id="3fb9cf70-6553-4d55-886f-1ad77d938234" class="">Previous archaeological findings from prehistoric period have uncovered evidence of past human occupation in Hong Kong.  Archaeological sites from the prehistory have been discovered on the relatively flat area along coastal beaches in the western Hong Kong near the Zhujiang River Delta. Prehistoric archaeological remains have been found in locations such as Lau Fau Shan, Ngau Hom Shek and Mong Tseng.  The geographical condition in these areas would have made them attractive places for human settlement during the prehistoric period.</p><p id="c870aeee-3168-4bba-bb33-993572e06372" class=""><strong>Table 4.1.1 </strong>presents the known archaeological periods previously identified in Hong Kong, with sensitive landscape to each period in general<div class="indented"><h3 id="573abe8d-a69b-4668-b7b6-061ca1c25f18" class="">Table 4.1.1 Known Archaeological Periods in Hong Kong</h3></div></p><table id="30884e6d-b1b2-4f06-8f4d-b1de9cb5f797" class="simple-table"><tbody><tr id="64cbf7bf-0f80-459f-a55d-609106ef43c8"><td id="wwoO" class=""><strong>Period</strong></td><td id="fAlQ" class=""><strong>Years</strong></td><td id="GzXg" class=""><strong>Representative Sites</strong></td><td id="f|=u" class=""><strong>Landforms with Archaeological Potential</strong></td></tr><tr id="eb6423f5-0bfc-48c7-8a08-20cfbd5d5387"><td id="wwoO" class="">Middle to Late Neolithic</td><td id="fAlQ" class="">7000BC – 3500BC</td><td id="GzXg" class="">Lung Kwu Chau, Tai Wan (Lamma Island), Yuen long</td><td id="f|=u" class="">Coastal plains, low hills, river terraces near estuaries</td></tr><tr id="b5a6a01a-6711-4465-a366-2ba197eda2ec"><td id="wwoO" class="">Bronze Age</td><td id="fAlQ" class="">3500BC – 2500BC</td><td id="GzXg" class="">Tai Wan (Lamma Island), Lo So Shing, Man Kwok Tsui</td><td id="f|=u" class=""></td></tr><tr id="ba444357-9be5-4f2a-9519-f3a581e4f3da"><td id="wwoO" class="">Song Dynasty</td><td id="fAlQ" class="">AD960 – AD1279</td><td id="GzXg" class="">Mong Tseng Wai, Tai Hom Tsuen</td><td id="f|=u" class="">Plains, valleys, river terraces</td></tr><tr id="aafb8824-8ef0-4de5-85cb-2bd57c4ca03e"><td id="wwoO" class="">Ming and Qing Dynasty</td><td id="fAlQ" class="">AD1368 – AD1912</td><td id="GzXg" class="">Chok Ko Wan, Kowloon Walled City</td><td id="f|=u" class=""></td></tr></tbody></table><h2 id="39e7be46-41c1-468a-9895-b50045007e72" class="">4.2 <strong>Archaeological Potential Areas Predicted by the MaxEnt Model</strong></h2><p id="631de643-366d-4373-88a2-4651fa4475e6" class="">The scoop of identifying archaeological potential areas will be focusing on the <strong>San Tin Region</strong> in northeast Yuen Long of the New Territories. </p><p id="59601edc-f2c0-48c1-aa28-04ba52710891" class="">The prediction model for prehistoric period has identified 10 areas to have archaeological potential in prehistoric period, namely Mai Po Area, Hop Shing Wai Area, San Tin Area, Lok Ma Chau Area, Mai Po Lung Area, Siu Hom Tsuen Area, Pang Loon Tei Area, Pak Shek Au Area, Hang Tau Area and Ngau Tam Mei (North) Area. They are generally located in coastal flats and hill foots. Their locations are presented in <strong>Figure 1</strong>.<div class="indented"><h3 id="045c8099-0844-4ff4-b0fb-fe35ea0f99b6" class="">Table 4.2.1 Summary of Areas of Archaeological Potential Predicted by MaxEnt Models</h3><table id="7c140640-8833-418c-abec-5266fc701822" class="simple-table"><tbody><tr id="94ba51d4-3b34-4b09-9bff-c754718ce5f8"><td id="|YmB" class=""></td><td id="|Y@f" class=""><strong>Model for Prehistoric Period</strong></td></tr><tr id="5f483fdf-71f4-4918-a717-bd965288135c"><td id="|YmB" class="">1</td><td id="|Y@f" class="">Mai Po Area</td></tr><tr id="4f449534-fbdc-4486-ad69-d6c1abea3f7c"><td id="|YmB" class="">2</td><td id="|Y@f" class="">Hop Shing Wai Area</td></tr><tr id="9e2a3117-ebba-4c6e-a928-8028cdaab191"><td id="|YmB" class="">3</td><td id="|Y@f" class="">San Tin Area</td></tr><tr id="ab27c6c8-b0e3-4a8a-83cc-75c1d67d377c"><td id="|YmB" class="">4</td><td id="|Y@f" class="">Lok Ma Chau Area</td></tr><tr id="b26c261a-6f34-43f8-b9c3-bebd34ff0bc8"><td id="|YmB" class="">5</td><td id="|Y@f" class="">Mai Po Lung Area</td></tr><tr id="f68b6c7f-1b6e-4b63-be18-fb0ff5e7f1e4"><td id="|YmB" class="">6</td><td id="|Y@f" class="">Siu Hom Tsuen Area</td></tr><tr id="531b13de-1e05-49f0-a055-7240c5f44fdc"><td id="|YmB" class="">7</td><td id="|Y@f" class="">Pang Loon Tei Area</td></tr><tr id="f73b09ca-ac72-4ee0-b8da-f0ea89ee51c9"><td id="|YmB" class="">8</td><td id="|Y@f" class="">Pak Shek Au Area</td></tr><tr id="4df68b83-e710-4ba0-bd38-0dd7d015d61e"><td id="|YmB" class="">9</td><td id="|Y@f" class="">Hang Tau Area</td></tr><tr id="1e12ffcc-4bd5-4e63-9343-07b1111769bc"><td id="|YmB" class="">10</td><td id="|Y@f" class="">Ngau Tam Mei (North) Area</td></tr></tbody></table></div></p><p id="c5ee2a66-efff-4082-b9e8-f36022693237" class="">Mai Po Area <div class="indented"><p id="961322db-aeb9-413f-a2b8-8179bacde41d" class="">The area has a coastal landscape that would have favoured prehistoric human settlements (see <strong>Figure 1</strong>). The land sits at an elevation approximately between +4mPD and +32mPD (mean = +12mPD) with a slope generally lower than 10°. The area is close to the coast, between 85m and 633m approximately. It faces west towards the Sham Chun River and Deep Bay. Such coastal setting have been known to have supported historical settlement such as the village cluster at San Tin and the Mai Po Lo Wai, as well as prehistoric sites on the coast of Deep Bay in Tuen Mun. The area is also near to the Mai Po SAI, which has known archaeological potential.</p></div></p><p id="738c6fd7-e621-44f9-aa05-8b1002d2b8e2" class="">Hop Shing Wai Area <div class="indented"><p id="30d3d397-8229-4d2c-a697-7929cace326c" class="">Hop Shing Wai Area is similar to Mai Po Area in having a coastal landscape that would have supported prehistoric human settlements (see <strong>Figure 1</strong>). The land sits at an elevation approximately between +4mPD and +43mPD (mean = +9mPD) with slopes generally lower than 10°. The area is close to the coast, between 30m and 295m approximately. It sits in front of a small hill facing north towards the Sham Chun River and Deep Bay. Such coastal setting has known historical settlement such as the village cluster at San Tin, and the Mai Po Lo Wai, as well as known prehistoric coastal setting in the southwestern coast of Deep Bay in Tuen Mun. In the light of this, this piece of land is predicted to contain archaeological potential in prehistoric period.</p><p id="582d4bd9-086b-4e49-843a-d0b57a049fc7" class="">The original landscape of this area was on the coast before modern development kicked in since the 20 However, the degree of the disturbance to archaeological potential in this area remains uncertain by the existing land use being temporary storage (which may have involved some site formation works). Thus, the area is assumed to have archaeological potential dating from prehistoric and historical period.</p></div></p><p id="aca86a60-4ea0-4fe5-a53a-32d8bf4dee8f" class="">San Tin Area<div class="indented"><p id="22147f11-ebce-4cf8-95ac-504ad5c7a2dd" class="">The area has known historical potential as the villages in San Tin could be dated to the early Ming dynasty (see <strong>Figure 1</strong>). The San Tin Area is a flat coastal plan with an elevation between +2mPD and +10mPD and slopes of 0° to 4° The historical villages of San Tin is situated in front of a small hill facing northwest. They are close to the coast, between 90m and 446m (mean = 286m) approximately. These landscape characteristics (a low-lying, gently sloping coastal plain close to a source of fresh water) are features that would have favoured human settlements. The presence of Ming dynasty villages indicates the area has high potential to contain archaeological remains dating from this period.</p></div></p><p id="032fc270-e371-4d0f-bdfd-caed4bd2575c" class="">Lok Ma Chau Area and Area South of Lok Ma Chau<div class="indented"><p id="1c5c41a5-a690-46bf-8bd3-6d8e373fa6bc" class="">The Lok Ma Chau Area identified in the prehistoric model has similar extent as the Lok Ma Chau Area plus Area South of Lok Ma Chau in the historical model (see <strong>Figure 1</strong>). These areas are predicted to have archaeological potential from prehistoric period.</p><p id="303f5415-3529-4697-978b-acf1040a2693" class="">Generally these areas locate in a landscape with both coastal and gentle hill slopes that would have favoured human settlements. The elevation ranges from +2mPD to +37mPD (mean = +10mPD) and the slope is between 0° and 18° (mean = 6°) approximately. The area faces the coast and sits at the bottom of a hillside facing west.</p></div></p><p id="198d33e6-b2b7-4245-bde3-7591a5d84546" class="">Mai Po Lung Tsuen Area<div class="indented"><p id="b4fda195-4db3-4dfd-a670-418c770177d1" class="">The area is located on a low-lying coastal plain with characteristics that would have favoured human settlements (see <strong>Figure 1</strong>). The elevation ranges from +4mPD to +31mPD (mean = +11mPD) and slopes range from 2° to 20° (mean = 7°) approximately. It is located close to the coast, between 228m and 560m (mean = 420m) approximately. The model results suggested that these landscapes have a higher probability of containing archaeological site from prehistoric period.</p><p id="b5f8ad0c-fa2d-414a-b930-e08193b014ca" class="">However, the archaeological potential had likely been impacted by modern development. The construction of San Tin Highway was commenced in the late 1980s. Large scale site formation and slope-cutting works were performed<a href="notion://www.notion.so/MAXENT-ARCHAEOLOGICAL-PREDICTION-MODEL-IN-NORTHWEST-HONG-KONG-cb58bb14c1654a8693e5da8b96c5c76b#_ftn2">[2]</a>, any archaeological deposits (if any) would have already been destroyed. Nevertheless, the remaining areas might still contain archaeological potential in prehistoric period.</p></div></p><p id="5c0183ec-2d88-4bb8-94c7-3e58d681e3c6" class="">Siu Hom Tsuen Area and Pang Loon Tei Area <div class="indented"><p id="3628b83e-f1f7-4b4f-a9c9-3b6e3cc9a8b4" class="">The areas have a river terrace landscape on gentle hill slopes that would have favoured settlement during the prehistoric period (see <strong>Figure 1</strong>). Similar landscape can be found in SAI of prehistoric period, such as Po Leng SAI and Sheung Shui Wah Shan SAI, which are also located on river terrace at the foot of hills. Both areas are located on a higher elevation between +2mPD and +48mPD (mean = +25mPD) and on steeper slopes between 1° and 18° (mean = 8°) approximately since they are situated on hill slopes. They are also further away from the coast, over 1000m to 2000m away. Meanwhile, the geology of the area is mainly alluvial and colluvial deposits (Qa, Qpa and Qpd), features typical of river terrace. These areas have landscape setting similar to the Po Leng SAI to the east (outside the assessment area), where prehistoric findings have been found. In the light of this, these three areas would have archaeological potential in the prehistoric period.</p></div></p><p id="2f2a24a5-c4ce-40c9-ac61-1dcdb8bc231f" class="">Pak Shek Au Area<div class="indented"><p id="52b7897f-a8e4-4961-995e-40321ea1135c" class="">Pak Shek Au Area is predicted to have archaeological potential from prehistoric period by the MaxEnt model (see <strong>Figure 1</strong>). However, past archaeological investigation for the Development of Lok Ma Chau Loop and North East New Territories New Development Areas Planning and Engineering Study have deemed the area with “low” and “nil” archaeological potential. </p></div></p><p id="08e1c8cd-6f73-4fde-80b7-825d681621b7" class="">Hang Tau Area<div class="indented"><p id="77a3e837-cc20-45ce-846f-536a0c09125f" class="">Hang Tau area is predicted to have archaeological potential from prehistoric period by the MaxEnt Model (see <strong>Figure 1</strong>). It is located on the eastern side of Saddle Pass between Ki Lun Shan and Ngau Tam Shan. The area is located on a hillslope within a river valley. Within the 500m Assessment Area, its geology mainly comprises of alluvial and colluvial deposits (Qa, Qpa and Qpd), which are features typical of river terrace. It is located on a higher elevation between +14mPD and +40mPD approximately and on steeper slopes between 1° and 16° It is noted that the extent of the Hang Tau Area might extend beyond the 500m Assessment Area.</p></div></p><p id="57e32a69-9349-4d28-8fe6-4d39fdf4cc38" class="">Ngau Tam Mei (North) Area<div class="indented"><p id="1869111f-29f6-4edc-a77a-8f8f05b3587e" class="">Ngau Tam Mei (North) area is predicted to have archaeological potential from prehistoric period by the MaxEnt Model (see <strong>Figure 1</strong>). The area is located on a southern hillslope of Ngau Tam Shan within the Ngau Tam Mei river valley. Within the 500m Assessment Area, its geology mainly comprises of colluvial deposits (Qpd) with some alluvial deposits (Qa and Qpa) in the south. It is located on a higher elevation between +14mPD and +28mPD approximately and on steeper slopes between 2° and 15° It is noted that the extent of the Ngau Tam Mei (North) Area might extend beyond the 500m Assessment Area.</p></div></p><h1 id="b431d3cd-39f5-4584-baa5-44d4656c95f8" class="">Bibliography</h1><p id="fef2c180-fed1-47e5-a349-7762c1bc954b" class="">Bickler, S. (2021). Machine Learning Arrives in Archaeology. <em>Advances in Archaeological Practice</em>. 9(2). 186-191. <a href="https://doi.org/10.1017/aap.2021.6">https://doi.org/10.1017/aap.2021.6</a>.</p><p id="d4c7af35-0cc9-4505-9edc-bb3b2f0790cf" class="">Conolly, J. (2008). Geographical Information Systems and Landscape Archaeology. In David, B. and Thomas, J. Eds. <em>Handbook of Landscape Archaeology</em>. 583–595.</p><p id="0a4f051b-dcfa-49e0-89b1-287e7924f61c" class="">Civil Engineering and Development Department. (2013). <em>Planning and Engineering Study on Development of Lok Ma Chau Loop – Investigation - Environmental Impact Assessment. 10 Cultural Heritage Impact. </em><a href="https://www.epd.gov.hk/eia/register/report/eiareport/eia_2122013/PDF/EIA/S10%20-%20CH%20v16.pdf">https://www.epd.gov.hk/eia/register/report/eiareport/eia_2122013/PDF/EIA/S10%20-%20CH%20v16.pdf</a>.</p><p id="35ab4b6b-377a-45cf-ae4a-5c9bb63194e3" class="">Kvamme, K.L. (2006). There and Back Again: Revisiting Archaeological Locational Modeling. In Mehrer, M.W. and Wescot, K.L. Eds. <em>GIS and Archaeological Site Location Modeling</em>. United Kingdom: Routledge. 3-38.</p><p id="b4497b40-e90c-4e9f-843e-5ec49b8e250e" class="">New Territories North and West Development Office, Civil Engineering and Development Department. (2013). <em>North East New Territories New Development Areas Planning and Engineering Study – Investigation Final Environmental Impact Assessment Report. 11 Cultural Heritage.</em> <a href="https://www.epd.gov.hk/eia/register/report/eiareport/eia_2132013/eia/pdf/ch_11_text.pdf">https://www.epd.gov.hk/eia/register/report/eiareport/eia_2132013/eia/pdf/ch_11_text.pdf</a>.</p><p id="9dab57a7-94ec-46c7-bf03-395e0064bf31" class="">Philips, S.J., Dudík, M. and Schapire, R.E. (2023). Maxent Software for Modeling species Niches and Distribution (Version 3.4.1). Available from url: <a href="https://biodiversityinformatics.amnh.org/open_source/maxent/">https://biodiversityinformatics.amnh.org/open_source/maxent/</a>. </p><p id="d6a8b280-b1fd-4995-ab5e-6b8be70ae7a7" class="">Refrew, C. &amp; Bahn, P. (2016). <em>Archaeology: Theories, Methods and Practice (6th ed.)</em>. United Kingdom: Thames &amp; Hudson.</p><p id="2a078fab-d74d-4aa5-82c9-790fd320dc1e" class="">Yaworsky, P.M. et al. (2020). Advancing Predictive Modeling in Archaeology: An Evulation of Regression and Machine Learning Methods on the Grand Stair-case Learning Methods on the Grand Staircase-Escalante National Monument. <em>PLOS ONE</em>. <a href="https://doi.org/10.1371/journal.pone.0239424">https://doi.org/10.1371/journal.pone.0239424</a>.</p><p id="1a486768-4501-4689-88cb-b43fb8e8b496" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
