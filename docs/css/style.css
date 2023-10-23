@@ -89,12 +89,14 @@ h3:after {
     overflow: hidden;
     margin-right: auto; 
     box-sizing: border-box;
-    text-align: justify;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .project_desc{
+    text-align: left;
     font-size: 16px;
-    margin-bottom:0px;
     font-weight: 300;
     padding-bottom: 10px;
 }
