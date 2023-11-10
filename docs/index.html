@@ -4,45 +4,115 @@
         <meta charset="UTF-8">
         <title>Wei Hei, Nip (Jack)</title>
         <link rel="stylesheet" href="css/style.css">
+        <style>
+            .potrait_photo_box{
+                height:250px;
+                width:250px;
+                border-radius:50%;
+                overflow-y: hidden;
+                margin:50px;
+            }
+            .potrait{
+                position: relative;
+                height:700px;
+                right:250px;
+                bottom:250px;   
+            }
+            
+            .descCard{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position:relative;
+            }
+            .descShortCut{
+                position: relative;
+                left:20px
+            }
+            
+            .projectBoxes{
+                width: 90%;
+                margin:0 auto;
+                text-align:center                
+            }
+            .projectBox{
+                padding-top: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .projectBox_left{
+                width:575px;
+                height: 350px;
+                overflow: hidden;
+            }
+            .projectBox_right{
+                width: 400px;
+                height:350px;
+                display: flex;
+                align-items: center;
+            }
+            .projectBox_Title{
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            .projectBox_Image{
+                width:80%;
+                object-fit: scale-down;
+                padding-top: 5px;
+            }
+            .project_desc{
+                font-size: 1rem;
+                font-weight: 500;
+                padding-bottom: 10px;
+                text-align: justify;                
+            }
+
+            
+        </style>
     </head>
-    <p style="text-align:center"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="image/IMG_0374.JPG" alt="My Profile Pic" style="height:300px;"></a></p>
+
     <body>
-        <div id="index">
-            <!-- <p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="image/IMG_0374.JPG" alt="My Profile Pic" style="height:300px;"></a></p> -->
-            <h1>Wei Hei, Nip (Jack)</h1>
-            <h2><a href="cv.html" class="shortcut">CV</a></h2>
-            <h2><a href="contactme.html" class="shortcut">Contact Me</a></h2>
-            <br>
-            <h3>Project</h3>
-            
-            <div class="project_boxes">
-                <a href="Maxent/MAXENT ARCHAEOLOGICAL PREDICTION MODEL IN NORTHWES cb58bb14c1654a8693e5da8b96c5c76b.html" style="text-decoration: none">
-                <div class="box">
-                    <div class="project_box">
-                        <div class="project_box_title">MaxEnt Archaeogical Prediction Model (WIP)</div>
-                        <div class="project_box_image"><img src="image/APM.jpg"></a></div>   
-                    </div>
-                    <div class="project_desc_box">
-                        <p class="project_desc">This project attempts to generate a prediction map of prehistoric archaeological sites in northwest Hong Kong using the MaxEnt algorithm... </p>
-                    </div>
-                </div>
-                </a>
-            
-                <!--
-                <div class="box">
-                    <div class="project_box">
-                        <div class="project_box_title">Lorem ipsum</div>
-                        <div class="project_box_image"><img src="   "></a></div>   
-                    </div>
-                    <div class="project_desc_box">
-                        <p class="project_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                -->
+        <div class="descCard">
+            <div class="potrait_photo_box"><img class="potrait" src="image/potrait.jpeg"></div>
+            <div class="descText">
+                <h1 class="descName">Wei Hei, Nip (Jack)</h1>
+                <div class="descShortCut">
+                    <h2><a href="cv.html" class="shortcut">CV</a></h2>
+                    <h2><a href="contactme.html" class="shortcut">Contact Me</a></h2>
+                </div>    
             </div>
-                
-            
-        </div>  
+        </div>
+        
+        <h3 class="project_divider">Project</h3>
+
+        <div class="projectBoxes">
+            <div class="projectBox"> 
+                <div class="projectBox_left">
+                    <div class="projectBox_Title">MaxEnt Archaeogical Prediction Model (WIP)</div>
+                    <div><img class="projectBox_Image" src="image/APM.jpg"></a></div>   
+                </div>
+                <div class="projectBox_right">
+                    <p class="project_desc">This project attempts to generate a prediction map of prehistoric archaeological sites in northwest Hong Kong using the MaxEnt algorithm<a href="/Users/nipweihei/01_Projects/05_CVWebsite2/Maxent/MAXENT ARCHAEOLOGICAL PREDICTION MODEL IN NORTHWES cb58bb14c1654a8693e5da8b96c5c76b.html" style="text-decoration: none;">(see more...)</a></p>
+                </div>
+            </div>
+            <!--
+            <div class="projectBox"> 
+                <div class="projectBox_left">
+                    <div class="projectBox_Title">MaxEnt Archaeogical Prediction Model (WIP)</div>
+                    <div><img class="projectBox_Image" src="image/APM.jpg"></a></div>   
+                </div>
+                <div class="projectBox_right">
+                    <p class="project_desc">This project attempts to generate a prediction map of prehistoric archaeological sites in northwest Hong Kong using the MaxEnt algorithm<a href="/Users/nipweihei/01_Projects/05_CVWebsite2/Maxent/MAXENT ARCHAEOLOGICAL PREDICTION MODEL IN NORTHWES cb58bb14c1654a8693e5da8b96c5c76b.html" style="text-decoration: none;">(see more...)</a></p>
+                </div>
+            </div>
+            -->
+        
+        </div>
+
+
 
     </body>
+
+
 </html>
